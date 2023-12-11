@@ -26,7 +26,9 @@
                                 </button>  
                             </div>
                         </div>
-                        <div class="table-responsive table-responsive-data2">
+                         @if(count($categories) !=0 )
+
+                         <div class="table-responsive table-responsive-data2">
                             <table class="table table-data2 text-center">
                                 <thead>
                                     <tr>
@@ -50,9 +52,11 @@
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="fa-solid fa-pen-to-square" style="color: #3426fd;"></i>
                                             </button>
+                                           <a href="{{ route('category#delete' , $category->category_id) }}">
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <i class="fa-solid fa-trash" style="color: #000000;"></i>
                                             </button>
+                                           </a>
                                         
                                         </div> 
                                     </td> 
@@ -62,6 +66,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        @else 
+                        <h2 class="text-secondary text-center mt-5">There is no Categoy Here!</h2>
+                         @endif
+
+                        
                         <!-- END DATA TABLE -->
                     </div>
                 </div>

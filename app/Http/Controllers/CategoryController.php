@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class CategoryController extends Controller
 {
@@ -32,7 +32,11 @@ class CategoryController extends Controller
         Category::create(['name' => $request->categoryName,]);
         return redirect()->route('category#list');
     }   
-
+    // delete category 
+    public function  delete($id){
+        Category::where('category_id',$id)->delete();
+        return back();
+    }
     // category validation check
     private function categoryValidationCheck($request){
         Validator::make($request->all(),[
@@ -48,3 +52,4 @@ class CategoryController extends Controller
      }
 
 }
+    

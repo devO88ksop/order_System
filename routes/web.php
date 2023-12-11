@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
-
-
+use App\Models\Category;
 
     Route::get('/', function () {
     return view('login');
@@ -26,6 +25,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::get('list',[CategoryController::class,'list'])->name('category#list'); 
     Route::get('create/page',[CategoryController::class,'createPage'])->name('category#createPage');
     Route::post('create',[CategoryController::class,'create'])->name('category#create');
+    Route::get('delete/{id}',[CategoryController::class,'delete'])->name('category#delete');
     }); 
 
     // user
