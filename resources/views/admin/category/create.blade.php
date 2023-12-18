@@ -17,20 +17,23 @@
                         <div class="card rounded">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h3 class="text-center title-2">Create Your Category </h3>
+                                    <h3 class="text-center title-2">Create Your Category</h3>
                                 </div>
                                 <hr>
                                 <form action="{{route('category#create')}}" method="post" novalidate="novalidate">
+
                                     @csrf
+                                    
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Name</label>
                                         <input id="cc-pament" name="categoryName" type="text"  value="{{old('categoryName')}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Seafood...">
+
                                          @error('categoryName')
+
                                             <div class="invalid-feedback">
                                                 {{$message}}
-                                            </div>
-                                
-                        
+                                            </div>  
+
                                          @enderror
                                     </div>
 

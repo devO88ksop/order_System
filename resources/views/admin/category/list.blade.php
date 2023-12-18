@@ -26,6 +26,24 @@
                                 </button>  
                             </div>
                         </div>
+                        @if(session('createSuccess'))
+                        <div class="col-3 offset-9">
+                            <div class="alert alert-success  alert-dismissible fade show" role="alert">
+                                <i class="fa-solid fa-circle-check fa-beat"></i>   {{ session('createSuccess') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if(session('deleteSuccess'))
+                        <div class="col-3 offset-9">
+                            <div class="alert alert-success  alert-dismissible fade show" role="alert">
+                                <i class="fa-solid fa-trash fa-shake" style="color: #ff1a1a;"></i>   {{ session('deleteSuccess') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        @endif
+
                          @if(count($categories) !=0 )
 
                          <div class="table-responsive table-responsive-data2">
@@ -41,9 +59,9 @@
                                 <tbody>
                                   @foreach ($categories as $category)
                                   <tr class="tr-shadow">
-                                    <td> {{ $category->category_id }} </td>
-                                    <td class="col-6"> {{ $category->name }} </td>
-                                    <td> {{ $category->created_at->format('j-F-Y') }} </td>
+                                    <td>                    {{ $category->category_id }}                 </td>
+                                    <td class="col-6">      {{ $category->name }}                        </td>
+                                    <td>                    {{ $category->created_at->format('j-F-Y') }} </td>
                                     <td>
                                         <div class="table-data-feature">
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
