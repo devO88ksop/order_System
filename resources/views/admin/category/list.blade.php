@@ -43,6 +43,27 @@
                             </div>
                         </div>
                         @endif
+                        <div class="row">
+                            <div class="col-3">
+                                <h4 class="text-secondary ">Search Key : <span class="text-danger">{{request('key')}}</span>  </h4>
+                            </div>
+                            <div class="col-3 offset-6 mb-4">
+                                <form action="{{route('category#list')}}" method="GET">
+                                    @csrf
+                                    <div class="d-flex">
+                                        <input type="text" name="key" class="form-control" placeholder="Search...." value="{{request('key')}}">
+                                    <button class="btn bg-danger text-white" type="submit">
+                                        <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                       <div class="row my-2">
+                        <div class="col-1  bg-white text-center p-1 shadow-sm">
+                            <h3> <i class="fa-solid fa-database mr-8"></i>   {{ $categories->total() }}</h3>
+                        </div>
+                       </div>
 
                          @if(count($categories) !=0 )
 
@@ -83,12 +104,16 @@
                                    
                                 </tbody>
                             </table>
+                            <div class="mt-3">
+                                {{-- {{ $categories->links() }} --}}
+                                {{ $categories->appends(request()->query())->links() }}
+                            </div>
                         </div>
                         @else 
                         <h2 class="text-secondary text-center mt-5">There is no Categoy Here!</h2>
-                         @endif
+                         @endif 
 
-                        
+                         
                         <!-- END DATA TABLE -->
                     </div>
                 </div>

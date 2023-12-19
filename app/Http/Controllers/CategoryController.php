@@ -12,7 +12,12 @@ class CategoryController extends Controller
     // direct category list Page
     public function list(){
 
-        $categories = Category::orderBy('category_id','desc')->get();
+        $categories = Category::when(request('key'),function($query){
+                            $query->where('name','like','%'.request('key').'%');
+                             })
+                            ->orderBy('category_id','desc')
+                            ->paginate(3);
+
         return view('admin.category.list',compact('categories'));
     
     }
