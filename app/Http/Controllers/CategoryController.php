@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $categories = Category::when(request('key'),function($query){
                             $query->where('name','like','%'.request('key').'%');
                              })
-                            ->orderBy('category_id','desc')
+                            ->orderBy('id','desc')
                             ->paginate(3);
 
         return view('admin.category.list',compact('categories'));
@@ -40,20 +40,20 @@ class CategoryController extends Controller
     }   
     // delete category 
     public function  delete($id){
-        Category::where('category_id',$id)->delete();   
+        Category::where('id',$id)->delete();   
         return back()->with(['deleteSuccess'=>' Category Deleted ....']);
     }
     // edit category 
     public function edit($id){
-        $category = Category::where('category_id',$id)->first();
+        $category = Category::where('id',$id)->first();
         return view('admin.category.edit',compact('category'));
     }
     // update Page 
-    public function update($id,Request $request){
-
+    public function update(Request $request){
+        // dd($request->all());    
         $this->categoryValidationCheck($request);
         $data = $this->requestCategoryData($request);
-        Category::where('category_id',$id)->update($data);
+        Category::where('id',$request->categoryID)->update($data);
         return redirect()->route('category#list');
 
     }
@@ -62,7 +62,7 @@ class CategoryController extends Controller
 
         private function categoryValidationCheck($request){ 
         Validator::make($request->all(),[
-            'categoryName' =>   'required | unique:categories,name | min:5'
+            'categoryName' =>   'required | unique:categories,name,' .$request->categoryID
         ])->validate();
     }
 

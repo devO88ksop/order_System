@@ -20,12 +20,13 @@
                                     <h3 class="text-center title-2" style="">Edit Your Category</h3>
                                 </div>
                                 <hr>
-                                <form action="{{route('category#update',$category->category_id)}}" method="post" novalidate="novalidate">
+                                <form action="{{route('category#update')}}" method="post" novalidate="novalidate">
 
                                     @csrf
                                     
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Name</label>
+                                        <input type="hidden" name="categoryID" value="{{ $category->id }}">
                                         <input id="cc-pament" name="categoryName" type="text"  value="{{old('categoryName',$category->name)}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Seafood...">
 
                                          @error('categoryName')
