@@ -43,10 +43,12 @@
                             </div>
                         </div>
                         @endif
+
                         <div class="row">
                             <div class="col-3">
                                 <h4 class="text-secondary ">Search Key : <span class="text-danger">{{request('key')}}</span>  </h4>
                             </div>
+
                             <div class="col-3 offset-6 mb-4">
                                 <form action="{{route('category#list')}}" method="GET">
                                     @csrf
@@ -59,6 +61,7 @@
                                 </form>
                             </div>
                         </div>
+
                        <div class="row my-2">
                         <div class="col-1  bg-white text-center p-1 shadow-sm">
                             <h3> <i class="fa-solid fa-database mr-8"></i>   {{ $categories->total() }}</h3>
@@ -88,9 +91,11 @@
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                                 <i class="fa-solid fa-eye" style="color: #19be24;"></i>
                                             </button>
+                                           <a href="{{ route('category#edit',$category->category_id) }}">
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="fa-solid fa-pen-to-square" style="color: #3426fd;"></i>
                                             </button>
+                                           </a>
                                            <a href="{{ route('category#delete' , $category->category_id) }}">
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <i class="fa-solid fa-trash" style="color: #000000;"></i>
