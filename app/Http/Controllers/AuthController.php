@@ -25,5 +25,9 @@ class AuthController extends Controller
             return redirect()-> route('category#list');
          }else
             return  redirect()-> route('user#home');
-    }       
+    }    
+    // change password Page 
+    public function changePasswordPage(){
+        return view('admin.password.ChangePsw');
+    }   
 }
