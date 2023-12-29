@@ -11,54 +11,65 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     // direct login page
-    
-    public function loginPage(){
+
+    public function loginPage()
+    {
         return view('login');
     }
 
     //direct register Page
-    
-    public function registerPage(){
+
+    public function registerPage()
+    {
         return view('register');
     }
     // direct dashboard
-    
-    public function dashboard(){
-        if(Auth::user()->role == 'admin'){
-            return redirect()-> route('category#list');
-         }else
-            return  redirect()-> route('user#home');
-    }    
-    // change password Page 
-    public function changePasswordPage(){
+
+    public function dashboard()
+    {
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('category#list');
+        } else
+            return  redirect()->route('user#home');
+    }
+    // change password Page
+    public function changePasswordPage()
+    {
         return view('admin.password.ChangePsw');
-    }   
+    }
 
-    // change password 
-    public function changePassword(Request $request){
-        // $this->passwordValidationCheck($request);
+    // change password
+    public function changePassword(Request $request)
+    {
+        $this->passwordValidationCheck($request);
         $currentUserId = Auth::user()->id;
-        $user = User::select('password')->where('id',$currentUserId)->first();
+        $user = User::select('password')->where('id', $currentUserId)->first();
         $dbHasHValue = $user->password;  // hash value
+        if (Hash::check($request->oldPassword, $dbHasHValue)) {
+            $data = ['password' => Hash::make($request->newPassword)];
+            User::where('id', Auth::user()->id)->update($data);
 
-        // $hashedValue = Hash::make( 'Kyaw Swe' );
-        // if( Hash::check(' Swe', $hashedValue) )
-        // dd('Password Changed');
-        // else 
-        // dd(' Incorrect Password '); 
+            Auth::logout();
+
+            return redirect()->route('auth#loginPage');
+            // return $this->loggedOut($request) ?: redirect('auth#loginPage');
+
+        }
+        return back()->with(['notMatch' => 'The Old Password does not match.Try Again!']);
 
 
-        dd($dbPassword);
+        // dd($dbHasHValue);
 
-        dd('changed Password'); 
+        // dd('changed Password');
     }
 
     // password validation check
-    private function passwordValidationCheck($request){
-        Validator::make($request->all(),[
-            'oldPassword' => 'required | min: 6 ',
-            'newPassword' => 'required | min: 6',    
-            'confirmPassword' => 'required | min: 6 | same:newPassword      '
+    private function passwordValidationCheck($request)
+    {
+        Validator::make($request->all(), [
+            'oldPassword' => 'required | min: 6 | max:10 ',
+            'newPassword' => 'required | min: 6 | max:10 ',
+            'confirmPassword' => 'required | min: 6 | max:10  | same:newPassword'
         ])->validate();
     }
 }
