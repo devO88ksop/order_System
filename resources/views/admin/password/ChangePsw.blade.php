@@ -6,13 +6,7 @@
         <div class="main-content">
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-3 offset-8">
-                            <a href="{{ route('category#list') }}">
-                                <button class="btn btn-danger text-white my-3 ms-4">List</button>
-                            </a>
-                        </div>
-                    </div>
+                   
                     <div class="col-lg-6 offset-3">
                         <div class="card rounded">
                             <div class="card-body">
@@ -20,15 +14,15 @@
                                     <h3 class="text-center title-2">Change Your Password</h3>
                                 </div>
                                 <hr>
-                                <form action="{{route('category#create')}}" method="post" novalidate="novalidate">
+                                <form action="{{route('admin#changePassword')}}" method="post" novalidate="novalidate">
 
                                     @csrf
                                     
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Old Password </label>
-                                        <input id="cc-pament" name="categoryName" type="text"  value="{{old('categoryName')}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Enter Old Password...">
+                                        <input id="cc-pament" name="oldPassword" type="password"   class="form-control @error('oldPassword') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Enter Old Password...">
 
-                                         @error('categoryName')
+                                         @error('oldPassword')
 
                                             <div class="invalid-feedback">
                                                 {{$message}}
@@ -38,9 +32,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">New Password </label>
-                                        <input id="cc-pament" name="categoryName" type="text"  value="{{old('categoryName')}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Enter New password...">
+                                        <input id="cc-pament" name="newPassword" type="password"   class="form-control @error('newPassword') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Enter New password...">
 
-                                         @error('categoryName')
+                                         @error('newPassword')
 
                                             <div class="invalid-feedback">
                                                 {{$message}}
@@ -50,9 +44,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Confirm Password </label>
-                                        <input id="cc-pament" name="categoryName" type="text"  value="{{old('categoryName')}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Enter Confirm Password...">
+                                        <input id="cc-pament" name="confirmPassword" type="password"   class="form-control @error('confirmPassword') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Enter Confirm Password...">
 
-                                         @error('categoryName')
+                                         @error('confirmPassword')
 
                                             <div class="invalid-feedback">
                                                 {{$message}}
