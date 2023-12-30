@@ -13,6 +13,22 @@
                             <div class="card-title">
                                 <h3 class="text-center title-2">Change Your Password</h3>
                             </div>
+                            @if(session('changeSuccess'))
+                            <div class="col-12">
+                                <div class="alert alert-success  alert-dismissible fade show" role="alert">
+                                    <i class="fa-solid fa-circle-check fa-beat"></i>   {{ session('changeSuccess') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                            @endif
+                            @if(session('notMatch'))
+                            <div class="col-12">
+                                <div class="alert alert-danger  alert-dismissible fade show" role="alert">
+                                    <i class="fa-solid fa-triangle-exclamation me-2"></i>  {{ session('notMatch') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                            @endif
                             <hr>
                             <form action="{{ route('admin#changePassword') }}" method="post" novalidate="novalidate">
 
@@ -21,7 +37,7 @@
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">Old Password </label>
                                     <input id="cc-pament" name="oldPassword" type="password"
-                                        class="form-control @if(session('notMatch')) is-invalid @endif @error('oldPassword') is-invalid @enderror" aria-required="true"
+                                        class="form-control @error('oldPassword') is-invalid @enderror" aria-required="true"
                                         aria-invalid="false" placeholder="Enter Old Password...">
 
                                     @error('oldPassword')
@@ -29,11 +45,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                        @if(session('notMatch'))
-                                        <div class="invalid-feedback">
-                                            {{ session('notMatch') }}
-                                        </div>
-                                        @endif
+
                                 </div>
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">New Password </label>

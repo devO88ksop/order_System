@@ -49,11 +49,10 @@ class AuthController extends Controller
             $data = ['password' => Hash::make($request->newPassword)];
             User::where('id', Auth::user()->id)->update($data);
 
-            Auth::logout();
+            // Auth::logout();
 
-            return redirect()->route('auth#loginPage');
-            // return $this->loggedOut($request) ?: redirect('auth#loginPage');
-
+            // return redirect()->route('auth#loginPage');
+            return back()->with(['changeSuccess'=>'Password Change Success!...']);
         }
         return back()->with(['notMatch' => 'The Old Password does not match.Try Again!']);
 
