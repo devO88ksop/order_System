@@ -16,17 +16,18 @@
                     <div class="col-lg-6 offset-3">
                         <div class="card rounded">
                             <div class="card-body">
-                                <div class="card-title">
-                                    <h3 class="text-center title-2">Create Your Category</h3>
+                                <div class="card-title">    
+                                    <h3 class="text-center title-2" style="">Edit Your Category</h3>
                                 </div>
                                 <hr>
-                                <form action="{{route('category#create')}}" method="post" novalidate="novalidate">
+                                <form action="{{route('category#update')}}" method="post" novalidate="novalidate">
 
                                     @csrf
                                     
                                     <div class="form-group">
                                         <label for="cc-payment" class="control-label mb-1">Name</label>
-                                        <input id="cc-pament" name="categoryName" type="text"  value="{{old('categoryName')}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Seafood...">
+                                        <input type="hidden" name="categoryID" value="{{ $category->id }}">
+                                        <input id="cc-pament" name="categoryName" type="text"  value="{{old('categoryName',$category->name)}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Seafood...">
 
                                          @error('categoryName')
 
@@ -39,7 +40,7 @@
 
                                     <div class=" my-3">
                                         <button id="payment-button" type="submit" class="btn btn-success w-100" style="border-radius: 10px">
-                                            <span id="payment-button-amount">Create</span>
+                                            <span id="payment-button-amount">Update</span>
                                             {{-- <span id="payment-button-sending" style="display:none;">Sending…</span>  --}}
                                             <i class="fa-solid fa-circle-right"></i>
                                         </button>
