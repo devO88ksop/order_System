@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 // login, register
 
-Route::redirect('/', 'login');
+Route::redirect('/', 'loginPage');
 Route::get('loginPage', [AuthController::class, 'loginPage'])->name('auth#loginPage');
 Route::get('registerPage', [AuthController::class, 'registerPage'])->name('auth#registerPage');
 
