@@ -13,21 +13,24 @@
                             <div class="card-title">
                                 <h3 class="text-center title-2">Change Your Password</h3>
                             </div>
-                            @if(session('changeSuccess'))
-                            <div class="col-12">
-                                <div class="alert alert-success  alert-dismissible fade show" role="alert">
-                                    <i class="fa-solid fa-circle-check fa-beat"></i>   {{ session('changeSuccess') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            @if (session('changeSuccess'))
+                                <div class="col-12">
+                                    <div class="alert alert-success  alert-dismissible fade show" role="alert">
+                                        <i class="fa-solid fa-circle-check fa-beat"></i> {{ session('changeSuccess') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
                                 </div>
-                            </div>
                             @endif
-                            @if(session('notMatch'))
-                            <div class="col-12">
-                                <div class="alert alert-danger  alert-dismissible fade show" role="alert">
-                                    <i class="fa-solid fa-triangle-exclamation me-2"></i>  {{ session('notMatch') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            @if (session('notMatch'))
+
+                                <div class="col-12">
+                                    <div class="alert alert-danger  alert-dismissible fade show" role="alert">
+                                        <i class="fa-solid fa-triangle-exclamation me-2"></i> {{ session('notMatch') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                             <hr>
                             <form action="{{ route('admin#changePassword') }}" method="post" novalidate="novalidate">
