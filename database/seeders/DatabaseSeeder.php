@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             'phone' => '09762254984',
             'address' => 'Yangon',
             'role'    =>'admin',
+            'gender'    =>'male',
             'password' => Hash::make('admin123')
-        ]);    
+        ]);
     }
 }

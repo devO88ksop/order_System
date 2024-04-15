@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens;
-    use HasFactory; 
+    use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
@@ -28,6 +28,7 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
+        'gender',
         'phone',
         'address',
         'role'
@@ -39,7 +40,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        // 'password',
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',

@@ -16,9 +16,17 @@ class AdminAuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role == 'user'){
-            abort(404); 
+        if (!empty(Auth::user())) {
+            if (url()->current() == route('auth#loginPage') ||  url()->current() == route('auth#registerPage')){
+                return back()->with('error!!', 'You are already logged in');
+            }
+
+            if (Auth::user()->role == 'user'){
+                return back()->with('error!!', 'You are already logged in');
+            }
+            return $next($request);
         }
         return $next($request);
+
     }
 }
