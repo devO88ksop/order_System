@@ -16,7 +16,7 @@
 
 
                             <div class="row">
-                                <div class="col-3 offset-2 ">
+                                <div class="col-3 offset-2">
                                     @if (Auth::user()->image == null)
                                         <img src="{{ asset('image/default_user.png') }}" />
                                     @else
@@ -39,10 +39,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-4 offset-10 mt-3">
-                                    <button class="btn bg-dark text-white">
-                                        <i class="fa-solid fa-pen-to-square me-2"></i> Edit Profile
+                                    <a href="{{ route('admin#edit') }}">
+                                        <button class="btn bg-dark text-white">
+                                            <i class="fa-solid fa-pen-to-square me-2"></i> Edit Profile
 
-                                    </button>
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div>
