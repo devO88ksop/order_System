@@ -16,16 +16,17 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('image')->nullable();
+            $table->string('gender','10');
             $table->string('phone');
             $table->string('address');
             $table->string('role',15)->default('user');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');    
+            $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
-        }); 
+        });
     }
 
     /**

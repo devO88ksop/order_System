@@ -57,6 +57,20 @@
                                                 placeholder="Enter Admin Phone...">
                                         </div>
                                         <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1 ">Gender</label>
+
+                                            <select name="gender" id="" class="form-control">
+
+                                                <option value="male" @if (Auth::user()->gender == 'male') selected @endif>
+                                                    Male</option>
+                                                <option value="female" @if (Auth::user()->gender == 'female') selected @endif>
+                                                    Female</option>
+
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="cc-payment" class="control-label mb-1">Address</label>
                                             <textarea id="cc-pament" name="address" type="text" style="height: 100px;"
                                                 class="form-control @error('address') is-invalid @enderror" aria-required="true" aria-invalid="false"

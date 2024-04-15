@@ -32,6 +32,8 @@
                                         {{ Auth::user()->phone }} </h3>
                                     <h3 class="my-3"> <i class="fa-solid fa-location-dot me-2"></i>
                                         {{ Auth::user()->address }} </h3>
+                                    <h3 class="my-3"> <i class="fa-solid fa-venus-mars me-2"></i>
+                                        {{ Auth::user()->gender }} </h3>
                                     <h3 class="my-3"> <i class="fa-solid fa-calendar-days me-2"></i></i>
                                         {{ Auth::user()->created_at->format('j - F - Y') }} </h3>
 
